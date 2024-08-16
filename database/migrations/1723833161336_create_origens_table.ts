@@ -8,6 +8,14 @@ export default class extends BaseSchema {
       table.increments('id')
       table.string('nome').notNullable()
 
+      table
+      .integer('compania_id')
+      .notNullable()
+      .unsigned()
+      .references('id')
+      .inTable('companias')
+      .onDelete('CASCADE')
+
       table.timestamp('created_at').notNullable()
       table.timestamp('updated_at').nullable()
     })

@@ -6,6 +6,7 @@ import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import { DbAccessTokensProvider } from '@adonisjs/auth/access_tokens'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 import UsuarioTipo from './usuario_tipo.js'
+import Compania from './compania.js'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
@@ -36,6 +37,9 @@ export default class Usuario extends compose(BaseModel, AuthFinder) {
 
   @belongsTo(() => UsuarioTipo)
   declare usuario_tipo: BelongsTo<typeof UsuarioTipo>
+
+  @belongsTo(() => Compania)
+  declare compania: BelongsTo<typeof Compania>
 
   static accessTokens = DbAccessTokensProvider.forModel(Usuario)
 }

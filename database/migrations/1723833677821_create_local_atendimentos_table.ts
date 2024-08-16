@@ -14,6 +14,14 @@ export default class extends BaseSchema {
       table.string('cidade').notNullable()
       table.string('estado').notNullable()
 
+      table
+      .integer('compania_id')
+      .notNullable()
+      .unsigned()
+      .references('id')
+      .inTable('companias')
+      .onDelete('CASCADE')
+
       table.timestamp('created_at').notNullable()
       table.timestamp('updated_at').nullable()
     })
