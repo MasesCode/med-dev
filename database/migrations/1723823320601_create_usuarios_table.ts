@@ -7,12 +7,21 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id').notNullable()
       table.string('nome_completo').notNullable()
+
       table
       .integer('usuario_tipo_id')
       .notNullable()
       .unsigned()
       .references('id')
       .inTable('usuario_tipos')
+      .onDelete('CASCADE')
+
+      table
+      .integer('compania_id')
+      .notNullable()
+      .unsigned()
+      .references('id')
+      .inTable('companias')
       .onDelete('CASCADE')
 
       table.string('email', 254).nullable().unique()
