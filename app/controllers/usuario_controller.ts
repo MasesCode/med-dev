@@ -10,7 +10,6 @@ interface DadosFormatadosStore {
 }
 
 interface DadosFormatadosUpdate {
-    usuario_id: number
     nome_completo: string | null
     usuario_tipo_id: number | null
     email?: string | null 
@@ -52,16 +51,15 @@ export default class UsuariosController {
         }
     }
 
-    async update({request, response}: HttpContext) {
+    async update({request, response, params}: HttpContext) {
         const dadosFormatados: DadosFormatadosUpdate = request.only([
-            'usuario_id',
             'nome_completo',
             'usuario_tipo_id',
             'email',
             'password'
         ]) as DadosFormatadosUpdate;
 
-        const { usuario_tipo_id, email, usuario_id } = dadosFormatados
+        const { usuario_tipo_id, email } = dadosFormatados
         const validaTipoUsuario = usuario_tipo_id !== null
             ? await UsuarioTipo.query().where('id', usuario_tipo_id).first()
             : null
@@ -75,7 +73,7 @@ export default class UsuariosController {
         }
 
         try {
-            const usuarioAtualizar = await Usuario.query().where('id', usuario_id).first()
+            const usuarioAtualizar = await Usuario.query().where('id', params.id).first()
             
             if (usuarioAtualizar) {
                 await usuarioAtualizar.merge(dadosFormatados)
