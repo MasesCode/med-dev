@@ -12,8 +12,6 @@ export default class UsuarioTiposController {
     }
 
     async store({request, response}: HttpContext) {
-        console.log("veio aq")
-        return
         try {
             const dadosFormatados: DadosFormatados = request.only(['tipo']);
             
