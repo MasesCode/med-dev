@@ -48,7 +48,6 @@ export default class UsuariosController {
 
             return response.created("Usuário criado com sucesso");
         } catch (error) {
-            console.error("Erro ao criar usuário:", error)
             return response.badRequest({ [ERRO_CRIAR_USUARIO]: error.message })
         }
     }
