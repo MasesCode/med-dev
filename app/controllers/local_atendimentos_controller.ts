@@ -12,14 +12,15 @@ interface DadosFormatadosStore {
 }
 
 interface DadosFormatadosUpdate {
-    nome: string | null
-    rua: string | null
-    bairro: string | null
-    numero: number | null
-    cidade: string | null
-    estado: string | null
+    nome?: string
+    rua?: string
+    bairro?: string
+    numero?: number
+    cidade?: string
+    estado?: string
     id?: number
 }
+
 
 export default class LocalAtendimentosController {
     async index() {
