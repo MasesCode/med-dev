@@ -9,6 +9,7 @@ interface DadosFormatadosStore {
     cidade: string
     estado: string
     id?: number
+    companiaId: number
 }
 
 interface DadosFormatadosUpdate {
@@ -19,6 +20,7 @@ interface DadosFormatadosUpdate {
     cidade?: string
     estado?: string
     id?: number
+    companiaId?: number
 }
 
 
@@ -35,7 +37,8 @@ export default class LocalAtendimentosController {
                 'bairro',
                 'numero',
                 'cidade',
-                'estado'
+                'estado',
+                'companiaId'
             ]) as DadosFormatadosStore;
             
             await LocalAtendimento.create(dadosFormatados)
@@ -50,6 +53,7 @@ export default class LocalAtendimentosController {
         try {
             const dadosFormatados: DadosFormatadosUpdate = request.only([
                 'nome',
+                'companiaId',
                 'rua', 
                 'bairro',
                 'numero',

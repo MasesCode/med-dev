@@ -21,6 +21,9 @@ export default class Usuario extends compose(BaseModel, AuthFinder) {
   declare usuarioTipoId: number
 
   @column()
+  declare companiaId: number
+
+  @column()
   declare nomeCompleto: string
 
   @column()

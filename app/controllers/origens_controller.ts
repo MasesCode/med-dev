@@ -4,6 +4,7 @@ import type { HttpContext } from '@adonisjs/core/http'
 interface DadosFormatados {
     nome: string
     id?: number
+    companiaId: number
 }
 
 export default class OrigensController {
@@ -15,6 +16,7 @@ export default class OrigensController {
         try {
             const dadosFormatados: DadosFormatados = request.only([
                 'nome',
+                'companiaId'
             ]) as DadosFormatados;
             
             await Origem.create(dadosFormatados)

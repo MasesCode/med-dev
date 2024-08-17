@@ -5,6 +5,7 @@ import type { HttpContext } from '@adonisjs/core/http'
 interface DadosFormatadosStore {
     nome_completo: string
     usuario_tipo_id: number
+    compania_id: number
     email?: string | null 
     password: string
 }
@@ -12,6 +13,7 @@ interface DadosFormatadosStore {
 interface DadosFormatadosUpdate {
     nome_completo: string | null
     usuario_tipo_id: number | null
+    compania_id: number | null
     email?: string | null 
     password: string | null
 }
@@ -21,6 +23,7 @@ const ERRO_ATUALIZAR_USUARIO = "Erro ao Atualizar Usuário";
 
 export default class UsuariosController {
     async index() {
+        //TO DO: LOGICA DE COMPANHIA
         return await Usuario.all()
     }
 
@@ -29,6 +32,7 @@ export default class UsuariosController {
             'nome_completo',
             'usuario_tipo_id',
             'email',
+            'compania_id',
             'password'
         ]) as DadosFormatadosStore;
         
@@ -55,6 +59,7 @@ export default class UsuariosController {
         const dadosFormatados: DadosFormatadosUpdate = request.only([
             'nome_completo',
             'usuario_tipo_id',
+            'compania_id',
             'email',
             'password'
         ]) as DadosFormatadosUpdate;

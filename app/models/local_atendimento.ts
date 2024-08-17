@@ -8,6 +8,9 @@ export default class LocalAtendimento extends BaseModel {
   declare id: number
 
   @column()
+  declare companiaId: number
+
+  @column()
   declare nome: string
 
   @column()
